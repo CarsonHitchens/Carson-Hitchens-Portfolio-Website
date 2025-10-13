@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carson Hitchens Portfolio Website</title>
+  <link rel="icon" type="image/png" href="Photos/MEE.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .active { color: #474973; }
+    .nav-link { transition: none; }
+    .icon-link:hover { color: #474973; transition: color 0.2s; }
+
+    #progress-container {
+      width: 100%;
+      height: 6px;
+      background: #E0E0E0;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 6px;
+      position: relative;
+    }
+    #progress {
+      height: 100%;
+      width: 0%;
+      background: #474973;
+      border-radius: 4px;
+    }
+  </style>
+
+<script>
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      window.location.href = "mobile.html";
+    }
+  </script>
+
+</head>
+
+<body style="background-color: #C1CEFE; color: white; transition: background-color 0.2s;">
+
+<nav class="fixed top-0 left-0 w-full bg-[#0D0C1D] shadow z-50">
+  <div class="flex justify-between items-center px-10 py-4">
+    <div class="flex space-x-8">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#credentials" class="nav-link">Credentials</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="flex space-x-8">
+        <a href="http://instagram.com/carsonhitchen" target="_blank" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-7 h-7">
+            <path d="M7.5 2A5.5 5.5 0 002 7.5v9A5.5 5.5 0 007.5 22h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0016.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/CarsonHitchens" target="_blank" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-7 h-7">
+            <path fill-rule="evenodd" d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.43 7.86 10.96.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.7-1.3-1.7-1.07-.73.08-.72.08-.72 1.18.08 1.8 1.21 1.8 1.21 1.05 1.79 2.75 1.27 3.42.97.1-.76.41-1.27.74-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.2-3.07-.12-.29-.52-1.46.12-3.05 0 0 .97-.31 3.18 1.17a11.1 11.1 0 015.8 0c2.21-1.48 3.18-1.17 3.18-1.17.64 1.59.24 2.76.12 3.05.75.8 1.2 1.82 1.2 3.07 0 4.39-2.69 5.36-5.25 5.64.42.37.8 1.1.8 2.22 0 1.6-.01 2.89-.01 3.28 0 .31.21.67.8.56A10.52 10.52 0 0023.5 12c0-6.35-5.15-11.5-11.5-11.5z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <a href="https://discord.com/users/798421697765310465" target="_blank" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55" fill="currentColor" class="w-7 h-7">
+            <path d="M60.104 4.552A58.59 58.59 0 0045.52.5a41.515 41.515 0 00-2.09 4.305c-6.53-1.017-13.025-1.017-19.533 0a41.68 41.68 0 00-2.09-4.305 58.418 58.418 0 00-14.583 4.052C.19 20.083-1.32 35.057.68 49.877c6.04 4.454 11.807 7.07 17.566 8.794a42.422 42.422 0 003.712-6.043 36.427 36.427 0 01-5.675-2.714c.477-.351.952-.718 1.415-1.09 11.157 5.18 23.238 5.18 34.4 0 .464.373.938.74 1.415 1.09a36.28 36.28 0 01-5.675 2.714 42.3 42.3 0 003.713 6.043c5.76-1.724 11.527-4.34 17.566-8.794 1.985-14.82-.527-29.794-10.403-45.325zm-35.64 32.61c-3.04 0-5.52-2.786-5.52-6.212 0-3.426 2.46-6.212 5.52-6.212 3.072 0 5.552 2.786 5.52 6.212 0 3.426-2.448 6.212-5.52 6.212zm23.16 0c-3.04 0-5.52-2.786-5.52-6.212 0-3.426 2.46-6.212 5.52-6.212 3.072 0 5.552 2.786 5.52 6.212 0 3.426-2.448 6.212-5.52 6.212z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+<img src="Photos/MEE.png" alt="MEE" id="mee" class="absolute cursor-default" style="top: 0px; left: 0px; width: 675px; height: 675px; z-index: 4;">
+
+<div id="star-container"></div>
+
+<style>
+  #star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    font-size: 24px;
+    color: #474973;
+    opacity: 1;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(800px);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+function createStar() {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.innerText = "✦";
+
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.top = "0px";
+
+  const size = Math.random() * 60 + 15;
+  star.style.fontSize = size + "px";
+
+  const duration = Math.random() * 3 + 3;
+  star.style.animationDuration = duration + "s";
+
+  document.getElementById("star-container").appendChild(star);
+
+  setTimeout(() => {
+    star.remove();
+  }, duration * 1000);
+}
+
+setInterval(() => {
+  const count = Math.floor(Math.random() * 2) + 2;
+  for (let i = 0; i < count; i++) {
+    createStar();
+  }
+}, 1000);
+</script>
+
+<div id="message-bar" style="position: absolute; top: 670px; left: 0%; transform: translateX(-50%); width: 1100px; height: 59px; background-color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; z-index: 5; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+  <div id="message-text" style="position: relative; left: -100%; font-family: sans-serif; font-size: 20px; font-weight: bold; color: black; white-space: nowrap;">
+  </div>
+</div>
+
+<script>
+const messages = [
+  "Aspiring Front-End Dev",
+  "❄️ 🦫 🍁 🫎 Canadian",
+  "Why she ate she=onika ate=burgers",
+  "Stan Loona"
+];
+
+let current = 0;
+const messageText = document.getElementById('message-text');
+
+function showMessage() {
+  messageText.innerText = messages[current];
+  let pos = -messageText.offsetWidth;
+  const barWidth = document.getElementById('message-bar').offsetWidth;
+  const center = (barWidth - messageText.offsetWidth) / 2 - 20;
+
+  function slideIn() {
+    if (pos < center) {
+      pos += 2;
+      messageText.style.left = pos + 'px';
+      requestAnimationFrame(slideIn);
+    } else {
+      setTimeout(slideOut, 1500);
+    }
+  }
+
+  function slideOut() {
+    if (pos > -messageText.offsetWidth) {
+      pos -= 2;
+      messageText.style.left = pos + 'px';
+      requestAnimationFrame(slideOut);
+    } else {
+      current = (current + 1) % messages.length;
+      showMessage();
+    }
+  }
+
+  slideIn();
+}
+
+showMessage();
+</script>
+
+<img src="Photos/Stamp1.png" alt="Stamp" id="stamp" class="absolute cursor-pointer" style="top: 170px; left: 30px; width: 120px; height: 120px; z-index: 5; transform: rotate(-15deg);">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+  const stamp = document.getElementById('stamp');
+
+  stamp.addEventListener('click', () => {
+    const rect = stamp.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = rect.top / window.innerHeight;
+
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { x: x, y: y },
+      colors: ['#FF0000', '#FFFFFF']
+    });
+
+    stamp.style.display = 'none';
+  });
+</script>
+
+<img src="Photos/Gameboy.png" alt="Gameboy" id="Gameboy" class="absolute cursor-pointer" style="top: 480px; left: 300px; width: 220px; height: 220px; z-index: 5; transform: rotate(15deg);">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+  const Gameboy = document.getElementById('Gameboy');
+
+  Gameboy.addEventListener('click', () => {
+    const rect = Gameboy.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = rect.top / window.innerHeight;
+
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { x: x, y: y },
+      colors: ['#808080', '#86a17d']
+    });
+
+    Gameboy.style.display = 'none';
+  });
+</script>
+
+<div class="absolute hidden md:flex" 
+     style="top: 270px; left: 665px; transform: rotate(7deg); z-index: 5; gap: 5px; background-color: white; padding: 20px 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+  <h1 style="font-size: 100px; font-weight: bold; color: #474973; margin: 0; display: flex; gap: 5px;">
+    <span class="hover-letter">H</span>
+    <span class="hover-letter">e</span>
+    <span class="hover-letter">y</span>
+    <span class="hover-letter">,</span>
+    <span class="hover-letter">I</span>
+    <span class="hover-letter">'</span>
+    <span class="hover-letter">m</span>
+    <span class="hover-letter">C</span>
+    <span class="hover-letter">a</span>
+    <span class="hover-letter">r</span>
+    <span class="hover-letter">s</span>
+    <span class="hover-letter">o</span>
+    <span class="hover-letter">n</span>
+  </h1>
+</div>
+
+<style>
+  .hover-letter {
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .hover-letter:hover {
+    transform: translateY(-10px);
+    color: #ff3c3c;
+  }
+</style>
+
+  <div class="absolute shadow-lg" style="top: 60px; left: -200px; width: 690px; height: 650px; background-color: #474973; border-radius: 30px;">
+  </div>
+</section>
+
+<div id="skills-card" class="hidden md:block">
+  <div class="w-[12rem] h-[36.5rem] rounded-xl bg-white text-gray-900 shadow-xl p-3 relative flex items-center justify-center overflow-hidden">
+    <div class="scroll-wrapper">
+      <div class="scroll-content">
+        <div class="scroll-item"><img src="Photos/CSharp.png" alt="C#" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/Python.png" alt="Python" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/JavaScript.png" alt="JavaScript" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/Java.png" alt="Java" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/Git.png" alt="Git" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/HTML5.png" alt="HTML5" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/CSS3.png" alt="CSS3" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/React.png" alt="React" class="icon w-8 h-8"></div>
+
+        <div class="scroll-item"><img src="Photos/CSharp.png" alt="C#" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/Python.png" alt="Python" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/JavaScript.png" alt="JavaScript" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/Java.png" alt="Java" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/Git.png" alt="Git" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/HTML5.png" alt="HTML5" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/CSS3.png" alt="CSS3" class="icon w-8 h-8"></div>
+        <div class="scroll-item"><img src="Photos/React.png" alt="React" class="icon w-8 h-8"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .scroll-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scroll-content {
+    display: flex;
+    gap: 1rem;
+    animation: scroll 10s linear infinite;
+  }
+
+  .scroll-item {
+    flex: 0 0 auto;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  #skills-card {
+    position: absolute;
+    top: 816px;
+    left: 22px;
+    z-index: 20;
+  }
+</style>
+
+<style>
+.scroll-wrapper {
+  height: 900px;
+  overflow: hidden;
+  width: 200px;
+}
+
+.scroll-content {
+  display: flex;
+  flex-direction: column;
+  animation: scroll 25s linear infinite;
+}
+
+.scroll-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+</style>
+
+<div id="text-hi" 
+     class="hidden md:block" 
+     style="position: absolute; top: 890px; left: 290px; font-size: 19px; font-weight: bold; color: #474973; font-family: 'Fredoka One', cursive; transform: rotate(-5deg); cursor: default;">
+  <span class="hover-letter">"</span>
+  <span class="hover-letter">C</span>
+  <span class="hover-letter">h</span>
+  <span class="hover-letter">i</span>
+  <span class="hover-letter">c</span>
+  <span class="hover-letter">k</span>
+  <span class="hover-letter">e</span>
+  <span class="hover-letter">n</span>
+  <span class="hover-letter"> </span>
+  <span class="hover-letter">j</span>
+  <span class="hover-letter">o</span>
+  <span class="hover-letter">c</span>
+  <span class="hover-letter">k</span>
+  <span class="hover-letter">e</span>
+  <span class="hover-letter">y</span>
+  <span class="hover-letter">"</span>
+</div>
+
+<div id="text-bye" 
+     class="hidden md:block" 
+     style="position: absolute; top: 1280px; left: 610px; font-size: 19px; font-weight: bold; color: #474973; font-family: 'Fredoka One', cursive; transform: rotate(-3deg); cursor: default; z-index: 4;">
+  <span class="hover-letter">"</span>
+  <span class="hover-letter">Y</span>
+  <span class="hover-letter">o</span>
+  <span class="hover-letter">u</span>
+  <span class="hover-letter">r</span>
+  <span class="hover-letter"> </span>
+  <span class="hover-letter">d</span>
+  <span class="hover-letter">u</span>
+  <span class="hover-letter">t</span>
+  <span class="hover-letter">y</span>
+  <span class="hover-letter"> </span>
+  <span class="hover-letter">i</span>
+  <span class="hover-letter">s</span>
+  <span class="hover-letter"> </span>
+  <span class="hover-letter">n</span>
+  <span class="hover-letter">o</span>
+  <span class="hover-letter">t</span>
+  <span class="hover-letter"> </span>
+  <span class="hover-letter">o</span>
+  <span class="hover-letter">v</span>
+  <span class="hover-letter">e</span>
+  <span class="hover-letter">r</span>
+  <span class="hover-letter">"</span>
+</div>
+
+<style>
+  .hover-letter {
+    display: inline-block;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .hover-letter:hover {
+    transform: translateY(-10px);
+    color: #ff3c3c;
+  }
+</style>
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+  .hover-letter {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+
+  .hover-letter:hover {
+    transform: translateY(-6px) scale(1.2);
+  }
+</style>
+
+<div class="absolute top-[51rem] right-5 w-[35rem] flex flex-col rounded-xl bg-white text-gray-900 shadow-xl transition-all duration-300 hover:-translate-y-1 z-5">
+  <div class="p-8 pb-12">
+    <h5 class="mb-4 block font-sans text-2xl font-bold leading-snug tracking-normal text-[#474973] antialiased">
+      Carson Hitchens
+    </h5>
+    <p class="block font-sans text-lg font-light leading-8 text-[#6B73A0] antialiased">
+    Hi, I’m Carson. I’ve been coding for over seven years, mostly using C# in Unity to create games and projects. I also build web applications that are practical and easy to use. Some of my favorite games, like Minecraft and Valorant, inspire me to experiment with game mechanics and design. I enjoy solving problems, learning new tools, and making projects people can enjoy. I like collaborating with others and exploring new ideas. I’m based in Calgary, Alberta. </p>
+  </div>
+</div>
+
+<div class="absolute flex flex-wrap gap-4 hidden md:flex" style="top:62rem; left:250px;">
+
+  <div class="bg-white p-[16px] pb-[20px] shadow-lg text-center transform transition-transform duration-300 hover:rotate-0 hover:scale-105" style="width:280px; rotate:-5deg; position: relative; left:20px;">
+    <img src="Photos/Minecraft.jpg" alt="Minecraft" class="object-cover mb-2 border-[6px] border-white" style="width:240px; height:240px;">
+    <div style="font-family: 'Permanent Marker', cursive; font-size: 18px; margin-top: 6px; background: linear-gradient(90deg, #00f0ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      /gamemode creative
+    </div>
+  </div>
+
+  <div class="bg-white p-[16px] pb-[20px] shadow-lg text-center transform transition-transform duration-300 hover:rotate-0 hover:scale-105" style="width:280px; rotate:6deg; position: relative; top:-120px; left:45px;">
+    <img src="Photos/Valorant.jpg" alt="Valorant" class="object-cover mb-2 border-[6px] border-white" style="width:240px; height:240px;">
+    <div style="font-family: 'Permanent Marker', cursive; font-size: 18px; margin-top: 6px; background: linear-gradient(90deg, #00f0ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      gg
+    </div>
+  </div>
+</div>
+
+
+<img src="Photos/Sage.png" alt="Sage" class="absolute cursor-pointer" style="top: 800px; left: 800px; width: 110px; height: 128px;" id="sage">
+<img src="Photos/Grass.png" alt="Grass" class="absolute cursor-pointer" style="top: 1250px; left: 225px; width: 110px; height: 128px;" id="grass">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+  function explodeConfetti(el, colors) {
+    const rect = el.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: {
+        x: x / window.innerWidth,
+        y: y / window.innerHeight
+      },
+      colors: colors,
+    });
+
+    el.remove();
+  }
+
+  const sage = document.getElementById("sage");
+  sage.addEventListener("click", () => {
+    explodeConfetti(sage, ["#B0E0E6", "#ADD8E6", "#87CEEB"]);
+  });
+
+  const grass = document.getElementById("grass");
+  grass.addEventListener("click", () => {
+    explodeConfetti(grass, ["#7CFC00", "#32CD32", "#228B22"]);
+  });
+</script>
+
+<div class="absolute top-[76rem] right-5 flex gap-4 z-5">
+  <div class="w-[20rem] rounded-xl bg-white text-gray-900 shadow-xl p-5 transition-all duration-300 hover:-translate-y-1 -mr-0.3">
+    <h6 class="mb-2 text-lg font-bold text-[#474973]">Carson's Playlist</h6>
+    <div class="flex flex-col gap-2">
+      <audio id="audio-player" src="Jump.mp3"></audio>
+      <div class="flex justify-between items-center">
+        <p id="song-title" class="text-[#474973] font-semibold text-sm">Jump</p>
+        <span id="current-time" class="text-xs text-[#6B73A0]">0:00</span>
+      </div>
+      <div id="progress-container">
+        <div id="progress"></div>
+      </div>
+      <div class="flex justify-center items-center gap-6 mt-3 text-[#474973]">
+        <button id="prev" class="text-lg hover:text-[#6B73A0] transition">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
+            <path d="M11.5 3.5L4.5 10l7 6.5v-13z"/>
+          </svg>
+        </button>
+        <button id="play-pause" class="w-12 h-12 flex items-center justify-center rounded-full bg-[#474973] hover:bg-[#6B73A0] transition">
+          <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 20" class="w-5 h-5">
+            <path d="M4 3v14l12-7L4 3z"/>
+          </svg>
+          <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 20" class="w-5 h-5 hidden">
+            <path d="M4 3h4v14H4V3zm8 0h4v14h-4V3z"/>
+          </svg>
+        </button>
+        <button id="next" class="text-lg hover:text-[#6B73A0] transition">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
+            <path d="M8.5 3.5L15.5 10l-7 6.5v-13z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<div class="w-[14rem] rounded-xl bg-white text-gray-900 shadow-xl p-5 transition-all duration-300 hover:-translate-y-1 relative ">
+  <h6 class="mb-2 text-lg font-bold text-[#474973]">Calgary Weather</h6>
+  <div class="text-[#6B73A0] text-sm mb-1 leading-9" id="weather-date-temp"></div>
+  <div class="text-[#6B73A0] text-sm leading-7" id="weather-wind-condition"></div>
+</div>
+</div>
+
+<section id="home" class="h-screen relative"></section>
+<section id="about" class="h-screen flex items-center justify-center"><h1 class="text-5xl font-bold text-[#95714F]"></h1></section>
+<section id="credentials" class="h-screen flex items-center justify-center"><h1 class="text-5xl font-bold text-[#95714F]"></h1></section>
+<section id="contact" class="h-screen flex items-center justify-center"><h1 class="text-5xl font-bold text-[#95714F]"></h1></section>
+
+<script>
+  const songs = [
+    { title: "Black Pink | 뛰어(JUMP)", src: "Jump.mp3" },
+    { title: "Twenty One Pilots | Mulberry Street", src: "Mulberry Street.mp3" },
+    { title: "Laufey | Lover Girl", src: "Lover Girl.mp3" },
+    { title: "Lisa | Rockstar", src: "Rockstar.mp3" },
+    { title: "Ed Sheeran | Shivers", src: "Shivers.mp3" }
+  ];
+
+  let currentSong = 0;
+  let isPlaying = false;
+
+  const audio = document.getElementById("audio-player");
+  const songTitle = document.getElementById("song-title");
+  const playPauseBtn = document.getElementById("play-pause");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+  const progress = document.getElementById("progress");
+  const progressContainer = document.getElementById("progress-container");
+  const currentTimeEl = document.getElementById("current-time");
+
+  function loadSong(index) {
+    audio.src = songs[index].src;
+    songTitle.textContent = songs[index].title;
+  }
+
+  function playSong() {
+    audio.play();
+    isPlaying = true;
+    document.getElementById("play-icon").classList.add("hidden");
+    document.getElementById("pause-icon").classList.remove("hidden");
+  }
+
+  function pauseSong() {
+    audio.pause();
+    isPlaying = false;
+    document.getElementById("play-icon").classList.remove("hidden");
+    document.getElementById("pause-icon").classList.add("hidden");
+  }
+
+  playPauseBtn.addEventListener("click", () => {
+    isPlaying ? pauseSong() : playSong();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    currentSong = (currentSong - 1 + songs.length) % songs.length;
+    loadSong(currentSong);
+    playSong();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentSong = (currentSong + 1) % songs.length;
+    loadSong(currentSong);
+    playSong();
+  });
+
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60) || 0;
+    const secs = Math.floor(seconds % 60) || 0;
+    return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+  }
+
+  audio.addEventListener("timeupdate", () => {
+    if (!isNaN(audio.duration)) {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = percent + "%";
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+  });
+
+  progressContainer.addEventListener("click", (e) => {
+    const width = progressContainer.clientWidth;
+    const clickX = e.offsetX;
+    audio.currentTime = (clickX / width) * audio.duration;
+  });
+
+  audio.addEventListener("ended", () => {
+    currentSong = (currentSong + 1) % songs.length;
+    loadSong(currentSong);
+    playSong();
+  });
+
+  loadSong(currentSong);
+</script>
+
+<script>
+  const sections = document.querySelectorAll("section");
+  const links = document.querySelectorAll(".nav-link");
+
+  window.addEventListener("scroll", () => {
+    let current = "home";
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 70;
+      if(scrollY >= sectionTop) current = section.getAttribute("id");
+    });
+
+    links.forEach(link => {
+      link.classList.remove("active");
+      if(link.getAttribute("href") === "#" + current) link.classList.add("active");
+    });
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = Math.min(scrollTop / docHeight, 1);
+
+    function hexToRgb(hex) {
+      const bigint = parseInt(hex.replace("#",""),16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return [r,g,b];
+    }
+
+    const startColor = hexToRgb("#C1CEFE");
+    const endColor = hexToRgb("#474973");
+
+    const r = Math.round(startColor[0] + (endColor[0]-startColor[0])*scrollPercent);
+    const g = Math.round(startColor[1] + (endColor[1]-startColor[1])*scrollPercent);
+    const b = Math.round(startColor[2] + (endColor[2]-startColor[2])*scrollPercent);
+
+    document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+  });
+</script>
+
+<script>
+ window.addEventListener("DOMContentLoaded", () => {
+  const weatherDateTempEl = document.getElementById("weather-date-temp");
+  const weatherWindConditionEl = document.getElementById("weather-wind-condition");
+
+  function getCalgaryDate() {
+    const options = { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'America/Edmonton' };
+    return new Date().toLocaleDateString('en-US', options);
+  }
+
+  async function getWeather() {
+    try {
+      const res = await fetch("https://wttr.in/Calgary?format=j1");
+      const data = await res.json();
+      const temp = data.current_condition[0].temp_C;
+      const condition = data.current_condition[0].weatherDesc[0].value;
+      const wind = data.current_condition[0].windspeedKmph;
+
+      weatherDateTempEl.textContent = `${getCalgaryDate()} | ${temp}°C`;
+      weatherWindConditionEl.textContent = `Wind: ${wind} km/h | ${condition}`;
+    } catch (err) {
+      console.error(err);
+      weatherDateTempEl.textContent = "Weather unavailable";
+      weatherWindConditionEl.textContent = "";
+    }
+  }
+
+  getWeather();
+  setInterval(getWeather, 600000);
+});
+</script>
+
+<div id="contact-form-container" style="width: 900px; max-width: 90%; padding: 30px; border-radius: 20px; background: linear-gradient(145deg, #C1CEFE, #FFFFFF); position: absolute; top: 2300px; left: 50%; transform: translateX(-50%); z-index: 5; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: Arial, sans-serif;">
+  <form id="contact-form" style="display:flex; flex-direction:column; height:100%;" method="POST" action="https://formspree.io/f/xblzzpjp">
+    <h2 style="text-align:center; margin-bottom:25px; color:#474973; font-size:2rem;">Contact Me</h2>
+
+    <label for="name" style="margin-bottom:5px; color:#474973;">Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your name" required style="padding:12px; margin-bottom:20px; border-radius:10px; border:1px solid #ccc; width:100%; color:#474973;">
+
+    <label for="email" style="margin-bottom:5px; color:#474973;">Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Your email" required style="padding:12px; margin-bottom:20px; border-radius:10px; border:1px solid #ccc; width:100%; color:#474973;">
+
+    <label for="message" style="margin-bottom:5px; color:#474973;">Your Message:</label>
+    <textarea id="message" name="message" placeholder="Type your message..." required style="padding:12px; margin-bottom:20px; border-radius:10px; border:1px solid #ccc; width:100%; flex:1; min-height:150px; color:#474973;"></textarea>
+
+    <button type="submit" style="padding:15px; background-color:#474973; color:white; border:none; border-radius:12px; font-size:18px; cursor:pointer; transition:0.3s;">Send</button>
+  </form>
+
+  <div id="popup-message" style="display:none; position:absolute; top:10px; left:50%; transform:translateX(-50%); background-color:#474973; color:white; padding:12px 25px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-weight:bold; z-index: 2000;">Message Sent!</div>
+</div>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const popup = document.getElementById("popup-message");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 3000);
+      } else {
+        alert("Oops! Something went wrong. Please try again.");
+      }
+    }).catch(error => {
+      alert("Oops! Could not send message.");
+    });
+  });
+</script>
+
+<img src="Photos/JeneBB.png" alt="JeneBB" id="JeneBB" class="stamp absolute cursor-pointer top-[2400px] left-8 w-[240px] h-[260px] z-4 -rotate-15"/>
+<img src="Photos/Vanillam.png" alt="Vanillam" id="Vanillam" class="stamp absolute cursor-pointer top-[2400px] right-24 w-[160px] h-[120px] z-4 -rotate-10"/>
+<img src="Photos/Loki.png" alt="Loki" id="Loki" class="stamp absolute cursor-pointer top-[2600px] right-20 w-[220px] h-[120px] z-4 rotate-10"/>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+  function triggerConfetti(element, colors) {
+    const rect = element.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = rect.top / window.innerHeight;
+
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { x: x, y: y },
+      colors: colors
+    });
+
+    element.style.display = 'none';
+  }
+
+  document.getElementById('JeneBB').addEventListener('click', () => {
+    triggerConfetti(document.getElementById('JeneBB'), ['#FFCC00', '#FF6666', '#66CCFF']);
+  });
+
+  document.getElementById('Vanillam').addEventListener('click', () => {
+    triggerConfetti(document.getElementById('Vanillam'), ['#FFFFFF', '#FFD700', '#FFB347']);
+  });
+
+  document.getElementById('Loki').addEventListener('click', () => {
+    triggerConfetti(document.getElementById('Loki'), ['#4B0082', '#00FF00', '#000000']);
+  });
+</script>
+
+<style>
+  @keyframes flipLeftRight {
+    0% { transform: scaleX(1); }
+    50% { transform: scaleX(-1); }
+    100% { transform: scaleX(1); }
+  }
+
+  .stamp {
+    animation: flipLeftRight 3s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  #JeneBB { animation-delay: 0s; }
+  #Vanillam { animation-delay: 2s; }
+  #Loki { animation-delay: 0.5s; }
+</style>
+<div id="certificates-container" class="absolute p-8" style="top: 1530px; left: 0px;">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
+
+    <a href="Certificates/Front-End-Developer.pdf" target="_blank" class="transform transition duration-300 hover:scale-110">
+      <img src="Certificates/Front End Developer-1.png" alt="Front End Developer Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/Microsoft-Front-End.pdf" target="_blank" class="transform transition duration-300 hover:scale-110">
+      <img src="Certificates/Microsoft Front End-1.png" alt="Microsoft Front End Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/Full-Stack-Developer.pdf" target="_blank" class="transform transition duration-300 hover:scale-110">
+      <img src="Certificates/Full Stack Developer-1.png" alt="Full Stack Developer Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/Microsoft-Full-Stack.pdf" target="_blank" class="transform transition duration-300 hover:scale-110">
+      <img src="Certificates/Microsoft Full Stack-1.png" alt="Microsoft Full Stack Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/Back-End-Developer.pdf" target="_blank" class="hidden md:block transform transition duration-300 hover:scale-110">
+      <img src="Certificates/Back End Developer-1.png" alt="Back End Developer Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/AI-Essentials.pdf" target="_blank" class="hidden md:block transform transition duration-300 hover:scale-110">
+      <img src="Certificates/AI Essentials-1.png" alt="AI Essentials Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/React.pdf" target="_blank" class="hidden md:block transform transition duration-300 hover:scale-110">
+      <img src="Certificates/React-1.png" alt="React Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+
+    <a href="Certificates/Web-DevelopementFundamentals.pdf" target="_blank" class="hidden md:block transform transition duration-300 hover:scale-110">
+      <img src="Certificates/Web Developement Fundamentals-1.png" alt="Web Development Fundamentals Certificate" class="rounded-lg shadow-lg w-full">
+    </a>
+  </div>
+</div>
+
+<style>
+@media (max-width: 1100px) {
+
+  .top-\[51rem\] {
+    right: auto !important;
+    left: 50% !important;
+    transform: translate(-50%, 0) !important;
+  }
+  .top-\[51rem\]:hover {
+    transform: translate(-50%, -0.25rem) !important;
+  }
+
+  .top-\[76rem\] {
+    right: auto !important;
+    left: 50% !important;
+    transform: translate(-50%, 0) !important;
+    justify-content: center !important;
+  }
+  .top-\[76rem\] > div:hover {
+    transform: translateY(-0.25rem) !important;
+  }
+}
+</style>
+
+<style>
+@media (max-width: 1100px) {
+  #sage,
+  #grass {
+    display: none !important;
+  }
+}
+</style>
+
+</body>
+</html>
