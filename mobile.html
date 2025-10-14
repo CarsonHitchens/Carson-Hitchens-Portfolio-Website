@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" type="image/png" href="Photos/MEE.png">
+<title>Carson Hitchens Portfolio Website</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 200vh; 
+    background-color: #C1CEFE;
+    position: relative;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.2s linear;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    color: #474973;
+    font-size: 8px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .letter-container {
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%) rotate(7deg);
+    display: flex;
+    gap: 1vw;
+    background-color: white;
+    padding: 2vw 2vw;
+    border-radius: 1.5vw;
+    box-shadow: 0 0.4vw 1vw rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  .letter-container h1 {
+    font-size: clamp(4vw, 10vw, 10vw);
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    gap: 0.5vw;
+  }
+
+  .letter {
+    display: inline-block;
+    color: #474973;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1.5vw); }
+  }
+
+  @keyframes colorChange {
+    0% { color: #474973; }
+    25% { color: #FF6F61; }
+    50% { color: #FFD93D; }
+    75% { color: #6BCB77; }
+    100% { color: #474973; }
+  }
+
+  #contact-form-container {
+    width: 95%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #C1CEFE, #FFFFFF);
+    margin: 800px auto 30px auto; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  #contact-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #474973;
+    font-size: 1.8rem;
+  }
+
+  #contact-form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #474973;
+    font-weight: 600;
+  }
+
+  #contact-form input,
+  #contact-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    color: #474973;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  #contact-form textarea {
+    min-height: 100px;
+    max-height: 200px;
+    resize: vertical;
+  }
+
+  #contact-form button {
+    padding: 12px;
+    background-color: #474973;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%; 
+  }
+
+  #popup-message {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #474973;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-weight: bold;
+    z-index: 2000;
+    text-align: center;
+  }
+
+  #social-links {
+    width: 95%;
+    max-width: 500px;
+    margin: 8px auto 60px auto;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    z-index: 20;
+  }
+
+  .social-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    text-decoration: none;
+    color: #474973;
+  }
+
+  .social-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  }
+
+  .social-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+
+  @media (max-width: 420px) {
+    .letter-container { top: 6vh; padding: 4vw; }
+    #contact-form-container { margin: 900px auto 30px auto; }
+  }
+</style>
+</head>
+<body>
+
+<div id="star-container"></div>
+
+<script>
+  // Star animation
+  const starContainer = document.getElementById('star-container');
+  const numStars = 100;
+  const stars = [];
+
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.textContent = '★';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.top = -Math.random() * window.innerHeight + 'px';
+    star.style.fontSize = 5 + Math.random() * 10 + 'px';
+    star.speed = 0.5 + Math.random() * 1.5;
+    starContainer.appendChild(star);
+    stars.push(star);
+  }
+
+  function animateStars() {
+    for (let star of stars) {
+      let top = parseFloat(star.style.top);
+      top += star.speed;
+      if (top > window.innerHeight) {
+        top = -20;
+        star.style.left = Math.random() * window.innerWidth + 'px';
+      }
+      star.style.top = top + 'px';
+    }
+    requestAnimationFrame(animateStars);
+  }
+
+  animateStars();
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollFraction = Math.min(scrollTop / docHeight, 1);
+
+    const startColor = [193, 206, 254]; 
+    const endColor = [100, 120, 180];  
+    const r = Math.round(startColor[0] + (endColor[0] - startColor[0]) * scrollFraction);
+    const g = Math.round(startColor[1] + (endColor[1] - startColor[1]) * scrollFraction);
+    const b = Math.round(startColor[2] + (endColor[2] - startColor[2]) * scrollFraction);
+
+    document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  });
+</script>
+
+<div class="letter-container">
+  <h1 id="animated-text">
+    <span class="letter">H</span>
+    <span class="letter">e</span>
+    <span class="letter">y</span>
+    <span class="letter">,</span>
+    <span class="letter">I</span>
+    <span class="letter">'</span>
+    <span class="letter">m</span>
+    <span class="letter">C</span>
+    <span class="letter">a</span>
+    <span class="letter">r</span>
+    <span class="letter">s</span>
+    <span class="letter">o</span>
+    <span class="letter">n</span>
+  </h1>
+</div>
+
+<script>
+  const letters = document.querySelectorAll('.letter');
+  let index = 0;
+
+  function animateLetter() {
+    const letter = letters[index];
+    letter.style.animation = 'bounce 0.5s ease forwards, colorChange 1s ease';
+    setTimeout(() => {
+      letter.style.animation = '';
+      index = (index + 1) % letters.length;
+      animateLetter();
+    }, 300);
+  }
+
+  animateLetter();
+</script>
+
+<div id="contact-form-container" style="margin-top: 860px;">
+  <form id="contact-form" method="POST" action="https://formspree.io/f/xblzzpjp">
+    <h2>Contact Me</h2>
+
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your name" required>
+
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" placeholder="Your email" required>
+
+    <label for="message">Your Message:</label>
+    <textarea id="message" name="message" placeholder="Type your message..." required></textarea>
+
+    <button type="submit">Send</button>
+    <div id="popup-message">Message Sent!</div>
+  </form>
+</div>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault(); // Prevent leaving the page
+  const form = e.target;
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      const popup = document.getElementById('popup-message');
+      popup.style.display = 'block';
+      form.reset();
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    } else {
+      alert('There was a problem sending your message. Please try again.');
+    }
+  } catch (error) {
+    alert('Network error. Please try again.');
+  }
+});
+</script>
+
+<div id="social-links" aria-label="Social links" style="
+  --social-margin-top: 10px;
+  width: 95%; 
+  max-width: 500px; 
+  margin: var(--social-margin-top) auto 60px auto; 
+  display: flex; 
+  justify-content: center; 
+  gap: 50px; 
+  z-index: 20;
+">
+
+  <a href="http://instagram.com/carsonhitchen" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:white;">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="width:28px; height:28px;">
+      <path d="M7.5 2A5.5 5.5 0 002 7.5v9A5.5 5.5 0 007.5 22h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0016.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+    </svg>
+  </a>
+
+  <a href="https://github.com/CarsonHitchens" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="color:white;">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="width:28px; height:28px;">
+      <path fill-rule="evenodd" d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.43 7.86 10.96.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.35-1.3-1.7-1.3-1.7-1.07-.73.08-.72.08-.72 1.18.08 1.8 1.21 1.8 1.21 1.05 1.79 2.75 1.27 3.42.97.1-.76.41-1.27.74-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.2-3.07-.12-.29-.52-1.46.12-3.05 0 0 .97-.31 3.18 1.17a11.1 11.1 0 015.8 0c2.21-1.48 3.18-1.17 3.18-1.17.64 1.59.24 2.76.12 3.05.75.8 1.2 1.82 1.2 3.07 0 4.39-2.69 5.36-5.25 5.64.42.37.8 1.1.8 2.22 0 1.6-.01 2.89-.01 3.28 0 .31.21.67.8.56A10.52 10.52 0 0023.5 12c0-6.35-5.15-11.5-11.5-11.5z" clip-rule="evenodd"/>
+    </svg>
+  </a>
+
+  <a href="https://discord.com/users/798421697765310465" target="_blank" rel="noopener noreferrer" aria-label="Discord" style="color:white;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55" fill="currentColor" style="width:28px; height:28px;">
+      <path d="M60.104 4.552A58.59 58.59 0 0045.52.5a41.515 41.515 0 00-2.09 4.305c-6.53-1.017-13.025-1.017-19.533 0a41.68 41.68 0 00-2.09-4.305 58.418 58.418 0 00-14.583 4.052C.19 20.083-1.32 35.057.68 49.877c6.04 4.454 11.807 7.07 17.566 8.794a42.422 42.422 0 003.712-6.043 36.427 36.427 0 01-5.675-2.714c.477-.351.952-.718 1.415-1.09 11.157 5.18 23.238 5.18 34.4 0 .464.373.938.74 1.415 1.09a36.28 36.28 0 01-5.675 2.714 42.3 42.3 0 003.713 6.043c5.76-1.724 11.527-4.34 17.566-8.794 1.985-14.82-.527-29.794-10.403-45.325zm-35.64 32.61c-3.04 0-5.52-2.786-5.52-6.212 0-3.426 2.46-6.212 5.52-6.212 3.072 0 5.552 2.786 5.52 6.212 0 3.426-2.448 6.212-5.52 6.212zm23.16 0c-3.04 0-5.52-2.786-5.52-6.212 0-3.426 2.46-6.212 5.52-6.212 3.072 0 5.552 2.786 5.52 6.212 0 3.426-2.448 6.212-5.52 6.212z"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0 0 10px 0;
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #social-links {
+    margin-top: auto;
+  }
+
+  #contact-form-container {
+    width: 95%;
+    max-width: 500px;
+    margin: 40px auto 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #C1CEFE, #FFFFFF);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #474973;
+    font-size: 1.8rem;
+  }
+
+  #contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #474973;
+    font-weight: 500;
+  }
+
+  #contact-form input,
+  #contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: #474973;
+  }
+
+  #contact-form textarea {
+    min-height: 70px;
+    max-height: 120px;
+    resize: vertical;
+  }
+
+  #contact-form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #474973;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #contact-form button:hover {
+    background-color: #343463;
+  }
+
+  #popup-message {
+    display: none;
+    margin-top: 10px;
+    background-color: #474973;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0 0 10px 0; 
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #social-links {
+    margin-top: auto; 
+  }
+</style>
+
+<style>
+  #contact-form-container {
+    width: 95%;
+    max-width: 500px;
+    margin: 40px auto 20px auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #C1CEFE, #FFFFFF);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #474973;
+    font-size: 1.8rem;
+  }
+
+  #contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #474973;
+    font-weight: 500;
+  }
+
+  #contact-form input,
+  #contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: #474973;
+  }
+
+  #contact-form textarea {
+    min-height: 70px; 
+    max-height: 120px; 
+    resize: vertical;
+  }
+
+  #contact-form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #474973;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #contact-form button:hover {
+    background-color: #343463;
+  }
+
+  #popup-message {
+    display: none;
+    margin-top: 10px;
+    background-color: #474973;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+
+<style>
+  :root {
+    --box-top: 175px; 
+  }
+
+  .description-box {
+    position: absolute;
+    top: var(--box-top);
+    left: 50%;               
+    transform: translateX(-50%);
+    width: min(90vw, 35rem); 
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    background: white;
+    color: #222;
+    box-shadow: 0 18px 36px rgba(13,19,45,0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    z-index: 30;
+  }
+
+  .description-box:hover {
+    transform: translateX(-50%) translateY(-6px); 
+    box-shadow: 0 28px 48px rgba(13,19,45,0.12);
+  }
+
+  .description-box .box-inner {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .description-box h5 {
+    margin: 0 0 0.7rem 0;
+    font-size: clamp(1.25rem, 5vw, 1.5rem); 
+    font-weight: 700;
+    color: #474973;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .description-box p {
+    margin: 0;
+    font-size: clamp(0.9rem, 4vw, 1rem); 
+    font-weight: 300;
+    color: #6B73A0;
+    line-height: 1.5;
+    text-align: center;
+  }
+</style>
+
+<div class="description-box">
+  <div class="box-inner">
+    <h5>Carson Hitchens</h5>
+    <p>
+      Hi, I’m Carson. I’ve been coding for over seven years, mostly using C# in Unity to create games and projects.
+      I also build web applications that are practical and easy to use. Some of my favorite games, like Minecraft and
+      Valorant, inspire me to experiment with game mechanics and design. I enjoy solving problems, learning new tools,
+      and making projects people can enjoy. I like collaborating with others and exploring new ideas. I’m based in Calgary, Alberta.
+    </p>
+  </div>
+</div>
+
+<div id="skills-card" class="skills-card">
+  <div class="scroll-wrapper">
+    <div class="scroll-content">
+
+      <div class="scroll-item"><img src="Photos/CSharp.png" alt="C#" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/Python.png" alt="Python" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/JavaScript.png" alt="JavaScript" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/Java.png" alt="Java" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/Git.png" alt="Git" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/HTML5.png" alt="HTML5" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/CSS3.png" alt="CSS3" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/React.png" alt="React" class="icon"></div>
+
+      <div class="scroll-item"><img src="Photos/CSharp.png" alt="C#" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/Python.png" alt="Python" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/JavaScript.png" alt="JavaScript" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/Java.png" alt="Java" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/Git.png" alt="Git" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/HTML5.png" alt="HTML5" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/CSS3.png" alt="CSS3" class="icon"></div>
+      <div class="scroll-item"><img src="Photos/React.png" alt="React" class="icon"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root {
+    --card-top: 560px; 
+  }
+
+  .skills-card {
+    position: absolute;
+    top: var(--card-top); 
+    left: 50%;           
+    transform: translateX(-50%);
+    width: 90vw;          
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 18px 36px rgba(13,19,45,0.12);
+    overflow: hidden;
+    z-index: 20;
+  }
+
+  .scroll-wrapper {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scroll-content {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: scroll-horizontal 25s linear infinite;
+  }
+
+  .scroll-item {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon {
+    width: clamp(50px, 12vw, 80px);
+    height: clamp(50px, 12vw, 80px);
+    object-fit: contain;
+  }
+
+  @keyframes scroll-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+
+<div id="certificates-container" class="certificates-container" style="top: 590px;">
+  <div class="certificates-track">
+    <div class="certificates-group">
+      <a href="Certificates/Front-End-Developer.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Front End Developer-1.png" alt="Front End Developer Certificate">
+      </a>
+      <a href="Certificates/Microsoft-Front-End.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Microsoft Front End-1.png" alt="Microsoft Front End Certificate">
+      </a>
+      <a href="Certificates/Full-Stack-Developer.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Full Stack Developer-1.png" alt="Full Stack Developer Certificate">
+      </a>
+      <a href="Certificates/Microsoft-Full-Stack.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Microsoft Full Stack-1.png" alt="Microsoft Full Stack Certificate">
+      </a>
+      <a href="Certificates/Back-End-Developer.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Back End Developer-1.png" alt="Back End Developer Certificate">
+      </a>
+      <a href="Certificates/AI-Essentials.pdf" target="_blank" class="certificate">
+        <img src="Certificates/AI Essentials-1.png" alt="AI Essentials Certificate">
+      </a>
+      <a href="Certificates/React.pdf" target="_blank" class="certificate">
+        <img src="Certificates/React-1.png" alt="React Certificate">
+      </a>
+      <a href="Certificates/Web-DevelopementFundamentals.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Web Developement Fundamentals-1.png" alt="Web Development Fundamentals Certificate">
+      </a>
+    </div>
+
+    <div class="certificates-group">
+      <a href="Certificates/Front-End-Developer.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Front End Developer-1.png" alt="Front End Developer Certificate">
+      </a>
+      <a href="Certificates/Microsoft-Front-End.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Microsoft Front End-1.png" alt="Microsoft Front End Certificate">
+      </a>
+      <a href="Certificates/Full-Stack-Developer.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Full Stack Developer-1.png" alt="Full Stack Developer Certificate">
+      </a>
+      <a href="Certificates/Microsoft-Full-Stack.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Microsoft Full Stack-1.png" alt="Microsoft Full Stack Certificate">
+      </a>
+      <a href="Certificates/Back-End-Developer.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Back End Developer-1.png" alt="Back End Developer Certificate">
+      </a>
+      <a href="Certificates/AI-Essentials.pdf" target="_blank" class="certificate">
+        <img src="Certificates/AI Essentials-1.png" alt="AI Essentials Certificate">
+      </a>
+      <a href="Certificates/React.pdf" target="_blank" class="certificate">
+        <img src="Certificates/React-1.png" alt="React Certificate">
+      </a>
+      <a href="Certificates/Web-DevelopementFundamentals.pdf" target="_blank" class="certificate">
+        <img src="Certificates/Web Developement Fundamentals-1.png" alt="Web Development Fundamentals Certificate">
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.certificates-container {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.certificates-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+  gap: 1rem;
+}
+
+.certificates-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.certificate {
+  flex: 0 0 auto;
+}
+
+.certificate img {
+  max-height: 24vh;
+  width: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.certificate img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+</body>
+</html>
